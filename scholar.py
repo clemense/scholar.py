@@ -722,7 +722,7 @@ class SearchScholarQuery(ScholarQuery):
         + '&as_sdt=%(patents)s%%2C5' \
         + '&as_vis=%(citations)s' \
         + '&btnG=&hl=en' \
-        + '&num=%(num)s'
+        + '&num=%(num)s' \
         + '&start=%(start)s'
 
     def __init__(self):
