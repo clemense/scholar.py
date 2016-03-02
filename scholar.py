@@ -7,6 +7,9 @@ page. It is not a recursive crawler.
 # ChangeLog
 # ---------
 #
+# 2.10  Merged a fix for the "TypError: quote_from_bytes()" problem on
+#       Python 3.x from hinnefe2.
+#
 # 2.9   Fixed Unicode problem in certain queries. Thanks to smidm for
 #       this contribution.
 #
@@ -183,7 +186,7 @@ except ImportError:
 # Support unicode in both Python 2 and 3. In Python 3, unicode is str.
 if sys.version_info[0] == 3:
     unicode = str # pylint: disable-msg=W0622
-    encode = lambda s: s # pylint: disable-msg=C0103
+    encode = lambda s: unicode(s) # pylint: disable-msg=C0103
 else:
     def encode(s):
         if isinstance(s, basestring):
@@ -207,7 +210,7 @@ class QueryArgumentError(Error):
 class ScholarConf(object):
     """Helper class for global settings."""
 
-    VERSION = '2.9'
+    VERSION = '2.10'
     LOG_LEVEL = 1
     MAX_PAGE_RESULTS = 20 # Current maximum for per-page results
     SCHOLAR_SITE = 'http://scholar.google.com'
